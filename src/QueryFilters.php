@@ -41,12 +41,8 @@ abstract class QueryFilters
                 continue;
             }
 
-            if (is_string($value) && strlen($value)) {
-                $this->$name($value);
-            }
-
-            if (is_array($value) && count($value)) {
-                $this->$name($value);
+            if ((is_string($value) && strlen($value)) || (is_array($value) && count($value))) {
+                $this->{camel_case($name)}($value);
             }
         }
 
